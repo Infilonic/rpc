@@ -9,6 +9,6 @@ namespace RPC.Message
     public interface IProcedureMessage
     {
         string Serialize();
-        IProcedureMessage Unserialize();
+        IProcedureMessage Deserialize();
     }
 }

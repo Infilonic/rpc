@@ -22,7 +22,7 @@ namespace RPC.Message
             throw new NotImplementedException();
         }
 
-        public IProcedureMessage Unserialize()
+        public IProcedureMessage Deserialize()
         {
             throw new NotImplementedException();
         }
