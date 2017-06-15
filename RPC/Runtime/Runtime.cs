@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Net;
 using System.Net.Sockets;
-using System.Net.WebSockets;
-using RPC.Runtime;
 
-namespace RPCServer.Runtime
+namespace RPC.Runtime
 {
     class Runtime
     {
@@ -37,7 +35,7 @@ namespace RPCServer.Runtime
 
         public void Start()
         {
-            if (!this.listener.Active)
+            if(!this.listener.Active)
             {
                 try
                 {
@@ -53,7 +51,7 @@ namespace RPCServer.Runtime
 
         public void Stop()
         {
-            if (this.listener.Active)
+            if(this.listener.Active)
             {
                 try
                 {
@@ -71,7 +69,7 @@ namespace RPCServer.Runtime
             byte[] bytes = new byte[256];
             string data;
 
-            while (this.listener.Active)
+            while(this.listener.Active)
             {
                 TcpClient client = this.listener.AcceptTcpClient();
                 Console.WriteLine("Incomming connection accepted");
@@ -81,7 +79,7 @@ namespace RPCServer.Runtime
                 var SocketThread = new Thread(() =>
                 {
                     int i;
-                    while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
+                    while((i = stream.Read(bytes, 0, bytes.Length)) != 0)
                     {
                         data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
 

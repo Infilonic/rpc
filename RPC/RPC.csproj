@@ -37,10 +37,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\RPCCallAttribute.cs" />
-    <Compile Include="Message\Call.cs" />
+    <Compile Include="Message\CallMessage.cs" />
     <Compile Include="Message\IProcedureMessage.cs" />
     <Compile Include="Message\Parameter.cs" />
-    <Compile Include="Message\Response.cs" />
+    <Compile Include="Message\ResponseMessage.cs" />
+    <Compile Include="Runtime\Runtime.cs" />
+    <Compile Include="Runtime\TcpListenerEx.cs" />
     <Compile Include="Stub\IStub.cs" />
   </ItemGroup>
   <ItemGroup>
