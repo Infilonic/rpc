@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPCClient.Runtime
+namespace RPCClient.Runtimes
 {
-    class Runtime
+    public class Runtime
     {
     }
 }

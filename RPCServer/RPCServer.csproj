@@ -40,7 +40,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Runtime\Runtime.cs" />
+    <Compile Include="Runtimes\Runtime.cs" />
     <Compile Include="Stub\CallStub.cs" />
     <Compile Include="Stub\ResponseStub.cs" />
   </ItemGroup>

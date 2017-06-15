@@ -8,11 +8,11 @@ using System.Net;
 using System.IO;
 using System.Net.Sockets;
 using System.Net.WebSockets;
-using RPCMaster.Runtime;
+using RPCMaster.Runtimes;
 
-namespace RPCServer.Runtime
+namespace RPCServer.Runtimes
 {
-    class Runtime
+    public class Runtime
     {
         private TcpListenerEx listener;
         private IPAddress localAddress;

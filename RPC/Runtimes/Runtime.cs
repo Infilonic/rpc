@@ -7,9 +7,9 @@ using System.Threading;
 using System.Net;
 using System.Net.Sockets;
 
-namespace RPCMaster.Runtime
+namespace RPCMaster.Runtimes
 {
-    class Runtime
+    public class Runtime
     {
         private TcpListenerEx listener;
         private IPAddress localAddress;
