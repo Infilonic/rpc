@@ -5,12 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Net;
-using System.IO;
 using System.Net.Sockets;
-using System.Net.WebSockets;
-using RPCMaster.Runtimes;
 
-namespace RPCServer.Runtimes
+namespace RPCMaster
 {
     public class Runtime
     {
@@ -38,7 +35,7 @@ namespace RPCServer.Runtimes
 
         public void Start()
         {
-            if (!this.listener.Active)
+            if(!this.listener.Active)
             {
                 try
                 {
@@ -54,7 +51,7 @@ namespace RPCServer.Runtimes
 
         public void Stop()
         {
-            if (this.listener.Active)
+            if(this.listener.Active)
             {
                 try
                 {
@@ -69,10 +66,10 @@ namespace RPCServer.Runtimes
 
         public void Run()
         {
-            byte[] bytes = new byte[1024];
+            byte[] bytes = new byte[256];
             string data;
 
-            while (this.listener.Active)
+            while(this.listener.Active)
             {
                 TcpClient client = this.listener.AcceptTcpClient();
                 Console.WriteLine("Incomming connection accepted");
@@ -81,18 +78,13 @@ namespace RPCServer.Runtimes
 
                 var SocketThread = new Thread(() =>
                 {
-                    using (MemoryStream ms = new MemoryStream())
+                    int i;
+                    while((i = stream.Read(bytes, 0, bytes.Length)) != 0)
                     {
-                        int i;
-                        while ((i = stream.Read(bytes, 0, bytes.Length)) > 0)
-                        {
-                            ms.Write(bytes, 0, i);
-                        }
-                        data = System.Text.Encoding.ASCII.GetString(ms.ToArray(), 0, (int)ms.Length);
+                        data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
+
                     }
 
-                    //Response
-                    stream.Write(new byte[] { 55, 56, 55, 56 }, 0, 4);
                     client.Close();
                 });
             }
