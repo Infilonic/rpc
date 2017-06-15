@@ -90,6 +90,9 @@ namespace RPCServer.Runtime
                         }
                         data = System.Text.Encoding.ASCII.GetString(ms.ToArray(), 0, (int)ms.Length);
                     }
+
+                    //Response
+                    stream.Write(new byte[] { 55, 56, 55, 56 }, 0, 4);
                     client.Close();
                 });
             }
