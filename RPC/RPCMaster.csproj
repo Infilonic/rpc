@@ -45,8 +45,8 @@
     <Compile Include="Message\IProcedureMessage.cs" />
     <Compile Include="Message\Parameter.cs" />
     <Compile Include="Message\ResponseMessage.cs" />
-    <Compile Include="Runtimes\Runtime.cs" />
-    <Compile Include="Runtimes\TcpListenerEx.cs" />
+    <Compile Include="Runtime.cs" />
+    <Compile Include="TcpListenerEx.cs" />
     <Compile Include="Stub\IStub.cs" />
   </ItemGroup>
   <ItemGroup>

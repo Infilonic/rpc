@@ -8,7 +8,7 @@ using System.Net;
 using System.IO;
 using System.Net.Sockets;
 using System.Net.WebSockets;
-using RPCMaster.Runtimes;
+using RPCMaster;
 
 namespace RPCServer
 {
@@ -18,12 +18,12 @@ namespace RPCServer
         private IPAddress localAddress;
         private int port;
 
-        public Runtime() : this("127.0.0.1")
+        public Runtime() : this(27900)
         {
 
         }
 
-        public Runtime(string localAddress) : this(localAddress, 27900)
+        public Runtime(int port) : this("127.0.0.1", port)
         {
 
         }
