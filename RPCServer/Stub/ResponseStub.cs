@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RPC.Message;
-using RPC.Stub;
+using RPCMaster.Message;
+using RPCMaster.Stub;
 
 namespace RPCServer.Stub
 {

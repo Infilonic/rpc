@@ -8,7 +8,7 @@ using System.Net;
 using System.IO;
 using System.Net.Sockets;
 using System.Net.WebSockets;
-using RPC.Runtime;
+using RPCMaster.Runtime;
 
 namespace RPCServer.Runtime
 {
