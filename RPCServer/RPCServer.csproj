@@ -48,9 +48,9 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RPC\RPC.csproj">
+    <ProjectReference Include="..\RPC\RPCMaster.csproj">
       <Project>{b00b7f0c-eac9-430a-b9d7-ab149fbae211}</Project>
-      <Name>RPC</Name>
+      <Name>RPCMaster</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
