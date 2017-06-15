@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using RPC.Message;
+using RPCMaster.Message;
 
-namespace RPC.Stub
+namespace RPCMaster.Stub
 {
     public interface IStub<T>
     {

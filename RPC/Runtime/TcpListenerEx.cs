@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Net.Sockets;
 
-namespace RPC.Runtime
+namespace RPCMaster.Runtime
 {
     public class TcpListenerEx : TcpListener
     {
@@ -15,7 +15,7 @@ namespace RPC.Runtime
 
         }
 
-        public bool Active
+        public new bool Active
         {
             get { return base.Active; }
         }

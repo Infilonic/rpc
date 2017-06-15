@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPC.Attributes
+namespace RPCMaster.Attributes
 {
     [AttributeUsage(AttributeTargets.Method)]
     public class RPCCallAttribute : Attribute

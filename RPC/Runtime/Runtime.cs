@@ -7,7 +7,7 @@ using System.Threading;
 using System.Net;
 using System.Net.Sockets;
 
-namespace RPC.Runtime
+namespace RPCMaster.Runtime
 {
     class Runtime
     {

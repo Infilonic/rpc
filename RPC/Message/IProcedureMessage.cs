@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RPC.Message
+namespace RPC.MasterMessage
 {
     public interface IProcedureMessage
     {
