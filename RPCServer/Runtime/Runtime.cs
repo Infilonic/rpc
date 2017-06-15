@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Net;
+using System.IO;
 using System.Net.Sockets;
 using System.Net.WebSockets;
 using RPC.Runtime;
@@ -68,7 +69,7 @@ namespace RPCServer.Runtime
 
         public void Run()
         {
-            byte[] bytes = new byte[256];
+            byte[] bytes = new byte[1024];
             string data;
 
             while (this.listener.Active)
@@ -80,13 +81,15 @@ namespace RPCServer.Runtime
 
                 var SocketThread = new Thread(() =>
                 {
-                    int i;
-                    while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
+                    using (MemoryStream ms = new MemoryStream())
                     {
-                        data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
-
+                        int i;
+                        while ((i = stream.Read(bytes, 0, bytes.Length)) > 0)
+                        {
+                            ms.Write(bytes, 0, i);
+                        }
+                        data = System.Text.Encoding.ASCII.GetString(ms.ToArray(), 0, (int)ms.Length);
                     }
-
                     client.Close();
                 });
             }
