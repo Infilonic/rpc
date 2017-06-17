@@ -1,30 +1,52 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace RPCMaster.Message
 {
-    public class ResponseMessage : IProcedureMessage
+    [XmlRoot("Response")]
+    public class ResponseMessage : IProcedureMessage<ResponseMessage>
     {
-        private string function;
-        private List<Parameter> returnValues;
+        [XmlElement("Function")]
+        private string Function;
+        [XmlArray("ReturnTupel")]
+        [XmlArrayItem("ReturnValue")]
+        private List<Parameter> ReturnValues;
+
+        public ResponseMessage() { }
 
         public ResponseMessage(string function, List<Parameter> returnValues)
         {
-            this.function = function;
-            this.returnValues = returnValues;
+            this.Function = function;
+            this.ReturnValues = returnValues;
         }
 
         public string Serialize()
         {
-            throw new NotImplementedException();
+            string serializedObject;
+            XmlSerializer serializer = new XmlSerializer(typeof(ResponseMessage));
+            using (StringWriter sWriter = new StringWriter())
+            {
+                serializer.Serialize(sWriter, this);
+                serializedObject = sWriter.ToString();
+            }
+            return serializedObject;
         }
 
-        public IProcedureMessage Deserialize()
+        public static ResponseMessage Deserialize(string serializedObject)
         {
-            throw new NotImplementedException();
+            ResponseMessage deserializedObject;
+            XmlSerializer serializer = new XmlSerializer(typeof(ResponseMessage));
+            using (StringReader sReader = new StringReader(serializedObject))
+            {
+                deserializedObject = (ResponseMessage)serializer.Deserialize(sReader);
+            }
+            return deserializedObject;
         }
     }
 }

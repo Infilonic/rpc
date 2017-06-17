@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace RPCMaster.Message
 {
-    public interface IProcedureMessage
+    public interface IProcedureMessage<T>
     {
         string Serialize();
-        IProcedureMessage Deserialize();
     }
 }

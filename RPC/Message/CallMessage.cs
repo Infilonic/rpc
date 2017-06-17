@@ -1,30 +1,52 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace RPCMaster.Message
 {
-    public class CallMessage : IProcedureMessage
+    [XmlRoot("Call")]
+    public class CallMessage : IProcedureMessage<CallMessage>
     {
-        private string function;
-        private List<Parameter> parameters;
+        [XmlElement("Function")]
+        public string Function;
+        [XmlArray("Parameters")]
+        [XmlArrayItem("Parameter")]
+        public List<Parameter> Parameters;
+
+        public CallMessage() { }
 
         public CallMessage(string function, List<Parameter> parameters)
         {
-            this.function = function;
-            this.parameters = parameters;
+            this.Function = function;
+            this.Parameters = parameters;
         }
 
         public string Serialize()
         {
-            throw new NotImplementedException();
+            string serializedObject;
+            XmlSerializer serializer = new XmlSerializer(typeof(CallMessage));
+            using(StringWriter sWriter =  new StringWriter())
+            {
+                serializer.Serialize(sWriter, this);
+                serializedObject = sWriter.ToString();
+            }
+            return serializedObject;
         }
 
-        public IProcedureMessage Deserialize()
+        public static CallMessage Deserialize(string serializedObject)
         {
-            throw new NotImplementedException();
+            CallMessage deserializedObject;
+            XmlSerializer serializer = new XmlSerializer(typeof(CallMessage));
+            using(StringReader sReader = new StringReader(serializedObject))
+            {
+                deserializedObject = (CallMessage)serializer.Deserialize(sReader);
+            }
+            return deserializedObject;
         }
     }
 }

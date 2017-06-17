@@ -3,28 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
+using System.Xml.Serialization;
+using System.Xml;
 
 namespace RPCMaster.Message
 {
+    [XmlType("Parameter")]
     public class Parameter
     {
-        private Type type;
-        private Object value;
+        [XmlElement("Type")]
+        public string Type;
+        [XmlElement("Value")]
+        public object Value;
+
+        public Parameter() { }
 
         public Parameter(Object value)
         {
-            this.type = value.GetType();
-            this.value = value;
-        }
-
-        public Type ParameterType
-        {
-            get { return this.type; }
-        }
-
-        public Object Value
-        {
-            get { return this.value; }
+            this.Type = value.GetType().ToString();
+            this.Value = value;
         }
     }
 }
