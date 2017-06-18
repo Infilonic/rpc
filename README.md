@@ -16,3 +16,8 @@ READ FIRST
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>
+
+Please keep in mind, this project should not be used for productive environments, since it's a project for learning purpose.
+There is no warranty from my side to any working parts. But you can use this code and modify it as you wish at the given conditions.
+
+If you have improvements to the code, create a pull request.
