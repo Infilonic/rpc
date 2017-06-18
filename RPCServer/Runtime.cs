@@ -1,4 +1,21 @@
-﻿using System;
+﻿/* This class is used as the top layer of the RPC. It handles connections and gives the messages to the according stub to interprete
+ * Copyright(C) 2017  Infilonic
+
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with this program.If not, see<http://www.gnu.org/licenses/>
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -69,32 +86,40 @@ namespace RPCServer
 
         public void Run()
         {
-            byte[] bytes = new byte[1024];
-            string data;
-
             while (this.listener.Active)
             {
-                TcpClient client = this.listener.AcceptTcpClient();
-                Console.WriteLine("Incomming connection accepted");
-                NetworkStream stream = client.GetStream();
-                data = null;
-
-                var SocketThread = new Thread(() =>
+                try
                 {
-                    using (MemoryStream ms = new MemoryStream())
+                    TcpClient client = this.listener.AcceptTcpClient();
+                    Console.WriteLine("Incomming connection accepted");
+                    var SocketThread = new Thread(() =>
                     {
-                        int i;
-                        while ((i = stream.Read(bytes, 0, bytes.Length)) > 0)
-                        {
-                            ms.Write(bytes, 0, i);
-                        }
-                        data = System.Text.Encoding.ASCII.GetString(ms.ToArray(), 0, (int)ms.Length);
-                    }
+                        byte[] bytes = new byte[1024];
+                        string data = "";
+                        NetworkStream stream = client.GetStream();
 
-                    //Response
-                    stream.Write(new byte[] { 55, 56, 55, 56 }, 0, 4);
-                    client.Close();
-                });
+                        while (stream.DataAvailable && stream.Read(bytes, 0, bytes.Length) > 0)
+                        {
+                            stream.Read(bytes, 0, bytes.Length);
+                            data += Encoding.ASCII.GetString(bytes, 0, bytes.Length);
+                        }
+
+                        client.Client.ReceiveTimeout = 100;
+
+                        Console.WriteLine("Received from Client: {0}", data);
+                        stream.Write(new byte[] { 55, 56, 55, 56 }, 0, 4);
+                        stream.Close();
+                        client.Close();
+                        return;
+                    });
+                } catch(IOException e)
+                {
+                    var socketExc = e.InnerException as SocketException;
+                    if(socketExc == null || socketExc.ErrorCode != 10060)
+                    {
+                        throw e;
+                    }
+                }
             }
         }
     }
