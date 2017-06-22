@@ -13,7 +13,7 @@ namespace RPCMaster.Message {
 		public AbstractMessage() { }
 		public virtual string Serialize() {
 			string serializedObject;
-			XmlSerializer serializer = new XmlSerializer(typeof(AbstractMessage));
+			XmlSerializer serializer = new XmlSerializer(this.GetType());
 			using (StringWriter sWriter = new StringWriter()) {
 				serializer.Serialize(sWriter, this);
 				serializedObject = sWriter.ToString();
