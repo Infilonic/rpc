@@ -41,11 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\RPCCallAttribute.cs" />
+    <Compile Include="Client.cs" />
     <Compile Include="Message\CallMessage.cs" />
     <Compile Include="Message\IProcedureMessage.cs" />
     <Compile Include="Message\Parameter.cs" />
     <Compile Include="Message\ResponseMessage.cs" />
     <Compile Include="Runtime.cs" />
+    <Compile Include="Server.cs" />
     <Compile Include="TcpListenerEx.cs" />
     <Compile Include="Stub\IStub.cs" />
   </ItemGroup>
