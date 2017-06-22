@@ -27,7 +27,7 @@ using System.Xml.Serialization;
 namespace RPCMaster.Message
 {
     [XmlRoot("Call")]
-    public class CallMessage : IProcedureMessage<CallMessage>
+    public class CallMessage : AbstractMessage<CallMessage>
     {
         [XmlElement("Function")]
         public string Function;
@@ -42,28 +42,5 @@ namespace RPCMaster.Message
             this.Function = function;
             this.Parameters = parameters;
         }
-
-        public string Serialize()
-        {
-            string serializedObject;
-            XmlSerializer serializer = new XmlSerializer(typeof(CallMessage));
-            using(StringWriter sWriter =  new StringWriter())
-            {
-                serializer.Serialize(sWriter, this);
-                serializedObject = sWriter.ToString();
-            }
-            return serializedObject;
-        }
-
-        public static CallMessage Deserialize(string serializedObject)
-        {
-            CallMessage deserializedObject;
-            XmlSerializer serializer = new XmlSerializer(typeof(CallMessage));
-            using(StringReader sReader = new StringReader(serializedObject))
-            {
-                deserializedObject = (CallMessage)serializer.Deserialize(sReader);
-            }
-            return deserializedObject;
-        }
-    }
+	}
 }
