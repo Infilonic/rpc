@@ -8,12 +8,12 @@ using System.Xml;
 using System.Xml.Serialization;
 
 namespace RPCMaster.Message {
-	public abstract class AbstractMessage : IProcedureMessage<AbstractMessage> {
+	public abstract class AbstractMessage<T> : IProcedureMessage<T> {
 
 		public AbstractMessage() { }
 		public virtual string Serialize() {
 			string serializedObject;
-			XmlSerializer serializer = new XmlSerializer(this.GetType());
+			XmlSerializer serializer = new XmlSerializer(typeof(T));
 			using (StringWriter sWriter = new StringWriter()) {
 				serializer.Serialize(sWriter, this);
 				serializedObject = sWriter.ToString();
@@ -21,11 +21,11 @@ namespace RPCMaster.Message {
 			return serializedObject;
 		}
 
-		public static AbstractMessage Deserialize(string serializedObject) {
-			AbstractMessage deserializedObject;
-			XmlSerializer serializer = new XmlSerializer(typeof(AbstractMessage));
+		public static T Deserialize(string serializedObject) {
+			T deserializedObject;
+			XmlSerializer serializer = new XmlSerializer(typeof(T));
 			using (StringReader sReader = new StringReader(serializedObject)) {
-				deserializedObject = (AbstractMessage) serializer.Deserialize(sReader);
+				deserializedObject = (T) serializer.Deserialize(sReader);
 			}
 			return deserializedObject;
 		}
