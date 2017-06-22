@@ -49,7 +49,6 @@
     <Compile Include="Message\ResponseMessage.cs" />
     <Compile Include="Runtime.cs" />
     <Compile Include="Server.cs" />
-    <Compile Include="TcpListenerEx.cs" />
     <Compile Include="Stub\IStub.cs" />
   </ItemGroup>
   <ItemGroup>
