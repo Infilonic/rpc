@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestImplementationRPC", "TestImplementationRPC\TestImplementationRPC.csproj", "{4D401077-8981-4848-8A27-B5B88B95C53F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPCImplementation", "TestImplementationRPC\RPCImplementation.csproj", "{4D401077-8981-4848-8A27-B5B88B95C53F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPCMaster", "RPCMaster\RPCMaster.csproj", "{B00B7F0C-EAC9-430A-B9D7-AB149FBAE211}"
 EndProject
