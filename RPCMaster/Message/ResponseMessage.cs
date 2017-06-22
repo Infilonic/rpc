@@ -15,19 +15,13 @@
  * along with this program.If not, see<http://www.gnu.org/licenses/>
  */
 
-using System;
-using System.IO;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace RPCMaster.Message
-{
+namespace RPCMaster.Message {
 
-    [XmlRoot("Response")]
+	[XmlRoot("Response")]
     public class ResponseMessage : AbstractMessage<ResponseMessage>
     {
         [XmlElement("Function")]

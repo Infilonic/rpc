@@ -16,14 +16,9 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace RPCMaster.Attributes
-{
-    [AttributeUsage(AttributeTargets.Method)]
+namespace RPCMaster.Attributes {
+	[AttributeUsage(AttributeTargets.Method)]
     public class RPCCallAttribute : Attribute
     {
         private string function;
