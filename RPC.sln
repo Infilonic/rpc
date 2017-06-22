@@ -1,15 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26430.13
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPCServer", "RPCServer\RPCServer.csproj", "{8442C069-8749-459F-BF85-40E9DCAC76B9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPCClient", "RPCClient\RPCClient.csproj", "{35E732F1-7FA4-4EC1-BF87-FF8E2F3FE768}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPCMaster", "RPC\RPCMaster.csproj", "{B00B7F0C-EAC9-430A-B9D7-AB149FBAE211}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestImplementationRPC", "TestImplementationRPC\TestImplementationRPC.csproj", "{4D401077-8981-4848-8A27-B5B88B95C53F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPCMaster", "RPCMaster\RPCMaster.csproj", "{B00B7F0C-EAC9-430A-B9D7-AB149FBAE211}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,22 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8442C069-8749-459F-BF85-40E9DCAC76B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8442C069-8749-459F-BF85-40E9DCAC76B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8442C069-8749-459F-BF85-40E9DCAC76B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8442C069-8749-459F-BF85-40E9DCAC76B9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{35E732F1-7FA4-4EC1-BF87-FF8E2F3FE768}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{35E732F1-7FA4-4EC1-BF87-FF8E2F3FE768}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{35E732F1-7FA4-4EC1-BF87-FF8E2F3FE768}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{35E732F1-7FA4-4EC1-BF87-FF8E2F3FE768}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B00B7F0C-EAC9-430A-B9D7-AB149FBAE211}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B00B7F0C-EAC9-430A-B9D7-AB149FBAE211}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B00B7F0C-EAC9-430A-B9D7-AB149FBAE211}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B00B7F0C-EAC9-430A-B9D7-AB149FBAE211}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4D401077-8981-4848-8A27-B5B88B95C53F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4D401077-8981-4848-8A27-B5B88B95C53F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D401077-8981-4848-8A27-B5B88B95C53F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D401077-8981-4848-8A27-B5B88B95C53F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B00B7F0C-EAC9-430A-B9D7-AB149FBAE211}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B00B7F0C-EAC9-430A-B9D7-AB149FBAE211}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B00B7F0C-EAC9-430A-B9D7-AB149FBAE211}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B00B7F0C-EAC9-430A-B9D7-AB149FBAE211}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
