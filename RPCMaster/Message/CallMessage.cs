@@ -33,11 +33,11 @@ namespace RPCMaster.Message
         public string Function;
         [XmlArray("Parameters")]
         [XmlArrayItem("Parameter")]
-        public List<Parameter> Parameters;
+        public List<Variable> Parameters;
 
         public CallMessage() { }
 
-        public CallMessage(string function, List<Parameter> parameters)
+        public CallMessage(string function, List<Variable> parameters)
         {
             this.Function = function;
             this.Parameters = parameters;

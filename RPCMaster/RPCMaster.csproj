@@ -45,7 +45,7 @@
     <Compile Include="Message\AbstractMessage.cs" />
     <Compile Include="Message\CallMessage.cs" />
     <Compile Include="Message\IProcedureMessage.cs" />
-    <Compile Include="Message\Parameter.cs" />
+    <Compile Include="Message\Variable.cs" />
     <Compile Include="Message\ResponseMessage.cs" />
     <Compile Include="Runtime.cs" />
     <Compile Include="Server.cs" />

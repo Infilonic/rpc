@@ -34,11 +34,11 @@ namespace RPCMaster.Message
         public string Function;
         [XmlArray("ReturnTupel")]
         [XmlArrayItem("ReturnValue")]
-        public List<Parameter> ReturnValues;
+        public List<Variable> ReturnValues;
 
 		public ResponseMessage() { }
 
-        public ResponseMessage(string function, List<Parameter> returnValues)
+        public ResponseMessage(string function, List<Variable> returnValues)
         {
             this.Function = function;
             this.ReturnValues = returnValues;

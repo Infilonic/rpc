@@ -26,17 +26,17 @@ using System.Xml;
 
 namespace RPCMaster.Message
 {
-    [XmlType("Parameter")]
-    public class Parameter
+    [XmlType("Variable")]
+    public class Variable
     {
         [XmlElement("Type")]
         public string Type;
         [XmlElement("Value")]
         public object Value;
 
-        public Parameter() { }
+        public Variable() { }
 
-        public Parameter(Object value)
+        public Variable(Object value)
         {
             this.Type = value.GetType().ToString();
             this.Value = value;
