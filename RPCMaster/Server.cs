@@ -19,6 +19,8 @@ using System;
 using System.Text;
 using System.Net;
 using System.Net.Sockets;
+using RPCMaster.Message;
+using RPCMaster.Stub;
 
 namespace RPCMaster {
 	public class StateObject
@@ -50,23 +52,32 @@ namespace RPCMaster {
 
 			base._socket.Listen(100);
 			Console.WriteLine("Listening...");
-			Socket handler = base._socket.Accept();
+			Socket handler;
 			String data = null;
 			byte[] buffer = null;
 
-			while (true) {
-				buffer = new byte[1024];
-				int bytesReceived = handler.Receive(buffer);
-				data += Encoding.ASCII.GetString(buffer, 0, bytesReceived);
-				if (data.IndexOf("<EOF>") > -1) {
-					break;
-				}
-			}
+			while(true) {
+				handler = base._socket.Accept();
+				data = null;
 
-			Console.WriteLine("Message received: {0}", data);
-			handler.Send(Encoding.ASCII.GetBytes("OK"));
-			handler.Shutdown(SocketShutdown.Both);
-			handler.Close();
+				while (true) {
+					buffer = new byte[1024];
+					int bytesReceived = handler.Receive(buffer);
+					data += Encoding.ASCII.GetString(buffer, 0, bytesReceived);
+					if (data.IndexOf("<EOF>") > -1) {
+						break;
+					}
+				}
+
+				string responseMessage = ServerStub.GetResponse(CallMessage.Deserialize(data));
+
+				byte[] response = Encoding.ASCII.GetBytes(responseMessage);
+
+				Console.WriteLine("Message received: {0}", data);
+				handler.Send(response);
+				handler.Shutdown(SocketShutdown.Both);
+				handler.Close();
+			}
 		}
 
 		private void AcceptCallback(IAsyncResult ar) {
