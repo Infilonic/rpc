@@ -21,16 +21,9 @@ namespace RPCMaster.Attributes {
 	[AttributeUsage(AttributeTargets.Method)]
     public class RPCCallAttribute : Attribute
     {
-        private string function;
-
         public RPCCallAttribute()
         {
-        }
-
-        public string Function
-        {
-            get { return this.function; }
-            set { this.function = value; }
+			
         }
     }
 }
