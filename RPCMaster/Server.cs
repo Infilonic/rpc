@@ -79,11 +79,5 @@ namespace RPCMaster {
 				handler.Close();
 			}
 		}
-
-		private void AcceptCallback(IAsyncResult ar) {
-			//
-		}
-
-
 	}
 }
