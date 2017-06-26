@@ -19,5 +19,6 @@ namespace RPCMaster.Stub {
 	public interface IStub<T>
     {
         void Call(string message);
+		void Response(string message);
     }
 }

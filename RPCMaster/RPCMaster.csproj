@@ -49,7 +49,9 @@
     <Compile Include="Message\ResponseMessage.cs" />
     <Compile Include="Runtime.cs" />
     <Compile Include="Server.cs" />
+    <Compile Include="Stub\ClientStub.cs" />
     <Compile Include="Stub\IStub.cs" />
+    <Compile Include="Stub\ServerStub.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
