@@ -24,16 +24,16 @@ namespace RPCMaster.Message {
     public class CallMessage : AbstractMessage<CallMessage>
     {
         [XmlElement("Function")]
-        public string Function;
+        public string FullQualifiedFunctionName;
         [XmlArray("Parameters")]
         [XmlArrayItem("Parameter")]
         public List<Variable> Parameters;
 
         public CallMessage() { }
 
-        public CallMessage(string function, List<Variable> parameters)
+        public CallMessage(string fullQualifiedFunctionName, List<Variable> parameters)
         {
-            this.Function = function;
+            this.FullQualifiedFunctionName = fullQualifiedFunctionName;
             this.Parameters = parameters;
         }
 	}
