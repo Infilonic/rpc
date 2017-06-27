@@ -33,6 +33,8 @@ namespace RPCMaster.Stub {
 						rM = new ResponseMessage(message.FullQualifiedFunctionName, new List<Variable>() { new Variable(ret) });
 					}
 				}
+			} catch (ArgumentException ae) {
+				return (new ResponseMessage(ae.ToString(), null)).Serialize();
 			} catch (Exception e) {
 				return (new ResponseMessage(e.ToString(), null)).Serialize();
 			}
