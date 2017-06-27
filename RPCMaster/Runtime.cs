@@ -23,13 +23,13 @@ namespace RPCMaster {
     {
 		protected Socket _socket;
 		protected IPAddress _ipAddress;
-		protected IPEndPoint _localEndPoint;
+		protected IPEndPoint _endPoint;
 		protected int _port;
 
 		public Runtime(IPAddress ipAddress, int port) {
 			this._ipAddress = ipAddress;
 			this._port = port;
-			this._localEndPoint = new IPEndPoint(this._ipAddress, this._port);
+			this._endPoint = new IPEndPoint(this._ipAddress, this._port);
 			this._socket = new Socket(this._ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 		}
 	}

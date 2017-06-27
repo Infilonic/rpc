@@ -41,14 +41,14 @@ namespace RPCMaster {
 
 		public Server(IPAddress ipAddress, int port) : base(ipAddress, port) {
 			try {
-				base._socket.Bind(base._localEndPoint);
+				base._socket.Bind(base._endPoint);
 			} catch (Exception e) {
 				Console.WriteLine("Unexpected exception: {0}", e.ToString());
 			}
 		}
 
 		public void StartListening() {
-			Console.WriteLine("Local address and port: {0}", base._localEndPoint.ToString());
+			Console.WriteLine("Local address and port: {0}", base._endPoint.ToString());
 
 			base._socket.Listen(100);
 			Console.WriteLine("Listening...");
