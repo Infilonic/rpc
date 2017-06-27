@@ -5,7 +5,7 @@ using RPCMaster.Message;
 using RPCMaster.Attributes;
 
 namespace RPCMaster.Stub {
-	class ServerStub {
+	public class ServerStub {
 		private static Assembly _execAssembly = Assembly.GetExecutingAssembly();
 		private static Type[] _typeArray = _execAssembly.GetTypes();
 		private static List<MethodInfo> _methodList = SetMethodList();

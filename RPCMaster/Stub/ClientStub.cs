@@ -2,7 +2,7 @@
 using RPCMaster.Message;
 
 namespace RPCMaster.Stub {
-	class ClientStub {
+	public class ClientStub {
 
 	}
 }
