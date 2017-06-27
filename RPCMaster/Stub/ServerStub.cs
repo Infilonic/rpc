@@ -24,17 +24,20 @@ namespace RPCMaster.Stub {
 		}
 
 		public static string GetResponse(CallMessage message) {
-			string returnVal = String.Empty;
-			object ret;
-			ResponseMessage rM;
-			foreach (MethodInfo mI in _methodList) {
-				if ((mI.DeclaringType.FullName + "." + mI.Name) == message.FullQualifiedFunctionName) {
-					ret = mI.Invoke(null, message.GetVariableArray());
-					rM = new ResponseMessage(message.FullQualifiedFunctionName, new List<Variable>() { new Variable(ret) });
+			object ret = null;
+			ResponseMessage rM = null;
+			try {
+				foreach (MethodInfo mI in _methodList) {
+					if ((mI.DeclaringType.FullName + "." + mI.Name) == message.FullQualifiedFunctionName) {
+						ret = mI.Invoke(null, message.GetVariableArray());
+						rM = new ResponseMessage(message.FullQualifiedFunctionName, new List<Variable>() { new Variable(ret) });
+					}
 				}
+			} catch (Exception e) {
+				return (new ResponseMessage(e.ToString(), null)).Serialize();
 			}
-			
-			return returnVal;
+
+			return rM != null ? rM.Serialize() : (new ResponseMessage("NO SUCH FUNCTION FOUND", null)).Serialize();
 		}
 	}
 }
