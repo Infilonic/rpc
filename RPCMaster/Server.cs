@@ -69,7 +69,7 @@ namespace RPCMaster {
 					}
 				}
 
-				string responseMessage = ServerStub.GetResponse(CallMessage.Deserialize(data));
+				string responseMessage = ServerStub.GetResponse(CallMessage.Deserialize(data)) + "<EOF>";
 
 				byte[] response = Encoding.ASCII.GetBytes(responseMessage);
 
