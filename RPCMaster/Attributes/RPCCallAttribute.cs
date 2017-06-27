@@ -17,13 +17,13 @@
 
 using System;
 
-namespace RPCMaster.Attributes {
-	[AttributeUsage(AttributeTargets.Method)]
+namespace RPCMaster.Attributes
+{
+    [AttributeUsage(AttributeTargets.Method)]
     public class RPCCallAttribute : Attribute
     {
-        public RPCCallAttribute()
-        {
-			
+        public RPCCallAttribute() {
+
         }
     }
 }

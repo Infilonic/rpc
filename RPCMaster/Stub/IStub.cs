@@ -15,10 +15,11 @@
  * along with this program.If not, see<http://www.gnu.org/licenses/>
  */
 
-namespace RPCMaster.Stub {
-	public interface IStub<T>
+namespace RPCMaster.Stub
+{
+    public interface IStub<T>
     {
         void Call(string message);
-		void Response(string message);
+        void Response(string message);
     }
 }

@@ -19,8 +19,9 @@ using System;
 using System.Xml.Serialization;
 using System.Xml;
 
-namespace RPCMaster.Message {
-	[XmlType("Variable")]
+namespace RPCMaster.Message
+{
+    [XmlType("Variable")]
     public class Variable
     {
         [XmlElement("Type")]
@@ -30,8 +31,7 @@ namespace RPCMaster.Message {
 
         public Variable() { }
 
-        public Variable(Object value)
-        {
+        public Variable(Object value) {
             this.Type = value != null ? value.GetType().ToString() : "NULL";
             this.Value = value;
         }

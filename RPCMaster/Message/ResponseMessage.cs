@@ -15,14 +15,14 @@
  * along with this program.If not, see<http://www.gnu.org/licenses/>
  */
 
-using System;
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace RPCMaster.Message {
+namespace RPCMaster.Message
+{
 
-	[XmlRoot("Response")]
+    [XmlRoot("Response")]
     public class ResponseMessage : AbstractMessage<ResponseMessage>
     {
         [XmlElement("Function")]
@@ -31,22 +31,21 @@ namespace RPCMaster.Message {
         [XmlArrayItem("ReturnValue")]
         public List<Variable> ReturnValues;
 
-		public ResponseMessage() { }
+        public ResponseMessage() { }
 
-        public ResponseMessage(string function, List<Variable> returnValues)
-        {
+        public ResponseMessage(string function, List<Variable> returnValues) {
             this.Function = function;
             this.ReturnValues = returnValues != null ? returnValues : new List<Variable>();
         }
 
-		public override object[] GetVariableArray() {
-			object[] retValArray = new object[this.ReturnValues.Count];
-			int i = 0;
-			foreach (Variable v in this.ReturnValues) {
-				retValArray[i] = v.Value;
-				i++;
-			}
-			return retValArray;
-		}
-	}
+        public override object[] GetVariableArray() {
+            object[] retValArray = new object[this.ReturnValues.Count];
+            int i = 0;
+            foreach (Variable v in this.ReturnValues) {
+                retValArray[i] = v.Value;
+                i++;
+            }
+            return retValArray;
+        }
+    }
 }

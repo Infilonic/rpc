@@ -22,59 +22,61 @@ using System.Net.Sockets;
 using RPCMaster.Message;
 using RPCMaster.Stub;
 
-namespace RPCMaster {
-	public class StateObject
-	{
-		public Socket workSocket = null;
-		public const int BufferSize = 1024;
-		public byte[] buffer = new byte[BufferSize];
-		public StringBuilder sb = new StringBuilder();
-	}
+namespace RPCMaster
+{
+    public class StateObject
+    {
+        public Socket workSocket = null;
+        public const int BufferSize = 1024;
+        public byte[] buffer = new byte[BufferSize];
+        public StringBuilder sb = new StringBuilder();
+    }
 
-	public class Server : Runtime
-	{
-		public Server() : this(IPAddress.Any.ToString()) { }
+    public class Server : Runtime
+    {
+        public Server() : this(IPAddress.Any.ToString()) { }
 
-		public Server(string host) : this(host, 27900) { }
+        public Server(string host) : this(host, 27900) { }
 
-		public Server(string host, int port) : this(IPAddress.Parse(host), port) { }
+        public Server(string host, int port) : this(IPAddress.Parse(host), port) { }
 
-		public Server(IPAddress ipAddress, int port) : base(ipAddress, port) {
-			try {
-				base._socket.Bind(base._endPoint);
-			} catch (Exception e) {
-				Console.WriteLine("Unexpected exception: {0}", e.ToString());
-			}
-		}
+        public Server(IPAddress ipAddress, int port) : base(ipAddress, port) {
+            try {
+                base._socket.Bind(base._endPoint);
+            }
+            catch (Exception e) {
+                Console.WriteLine("Unexpected exception: {0}", e.ToString());
+            }
+        }
 
-		public void StartListening() {
-			Console.WriteLine("Local address and port: {0}", base._endPoint.ToString());
+        public void StartListening() {
+            Console.WriteLine("Local address and port: {0}", base._endPoint.ToString());
 
-			base._socket.Listen(100);
-			Console.WriteLine("Listening...");
-			Socket handler;
-			String data = null;
-			byte[] buffer = null;
+            base._socket.Listen(100);
+            Console.WriteLine("Listening...");
+            Socket handler;
+            String data = null;
+            byte[] buffer = null;
 
-			while(true) {
-				handler = base._socket.Accept();
-				data = null;
+            while (true) {
+                handler = base._socket.Accept();
+                data = null;
 
-				while (true) {
-					buffer = new byte[1024];
-					int bytesReceived = handler.Receive(buffer);
-					data += Encoding.ASCII.GetString(buffer, 0, bytesReceived);
-					if (data.IndexOf("\0") > -1) {
-						break;
-					}
-				}
+                while (true) {
+                    buffer = new byte[1024];
+                    int bytesReceived = handler.Receive(buffer);
+                    data += Encoding.ASCII.GetString(buffer, 0, bytesReceived);
+                    if (data.IndexOf("\0") > -1) {
+                        break;
+                    }
+                }
 
-				string responseMessage = ServerStub.GetResponse(CallMessage.Deserialize(data)) + "\0";
-				byte[] response = Encoding.ASCII.GetBytes(responseMessage);
-				handler.Send(response);
-				handler.Shutdown(SocketShutdown.Both);
-				handler.Close();
-			}
-		}
-	}
+                string responseMessage = ServerStub.GetResponse(CallMessage.Deserialize(data)) + "\0";
+                byte[] response = Encoding.ASCII.GetBytes(responseMessage);
+                handler.Send(response);
+                handler.Shutdown(SocketShutdown.Both);
+                handler.Close();
+            }
+        }
+    }
 }

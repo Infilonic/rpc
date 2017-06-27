@@ -21,34 +21,37 @@ using System.Text;
 using System.Net.Sockets;
 using RPCMaster.Message;
 
-namespace RPCMaster {
-	public class Client : Runtime {
-		public Client() : this(IPAddress.Any.ToString()) { }
+namespace RPCMaster
+{
+    public class Client : Runtime
+    {
+        public Client() : this(IPAddress.Any.ToString()) { }
 
-		public Client(string host) : this(host, 27900) { }
+        public Client(string host) : this(host, 27900) { }
 
-		public Client(string host, int port) : this(IPAddress.Parse(host), port) { }
+        public Client(string host, int port) : this(IPAddress.Parse(host), port) { }
 
-		public Client(IPAddress ipAddress, int port) : base(ipAddress, port) { }
+        public Client(IPAddress ipAddress, int port) : base(ipAddress, port) { }
 
-		public void StartSending(string message, out string response) {
-			byte[] buffer = new byte[1024];
+        public void StartSending(string message, out string response) {
+            byte[] buffer = new byte[1024];
 
-			try {
-				base._socket.Connect(base._endPoint);
-				Console.WriteLine("Connected to {0}", base._socket.RemoteEndPoint.ToString());
-				string callMessage = message + "\0";
-				byte[] msg = Encoding.ASCII.GetBytes(callMessage);
-				int bytesSent = base._socket.Send(msg);
+            try {
+                base._socket.Connect(base._endPoint);
+                Console.WriteLine("Connected to {0}", base._socket.RemoteEndPoint.ToString());
+                string callMessage = message + "\0";
+                byte[] msg = Encoding.ASCII.GetBytes(callMessage);
+                int bytesSent = base._socket.Send(msg);
 
-				int bytesReceived = base._socket.Receive(buffer);
-				response = Encoding.ASCII.GetString(buffer, 0, bytesReceived);
-				base._socket.Shutdown(SocketShutdown.Both);
-				base._socket.Close();
-			} catch (Exception e) {
-				Console.WriteLine("Unexpected exception: {0}", e.ToString());
-				response = e.ToString();
-			}
-		}
-	}
+                int bytesReceived = base._socket.Receive(buffer);
+                response = Encoding.ASCII.GetString(buffer, 0, bytesReceived);
+                base._socket.Shutdown(SocketShutdown.Both);
+                base._socket.Close();
+            }
+            catch (Exception e) {
+                Console.WriteLine("Unexpected exception: {0}", e.ToString());
+                response = e.ToString();
+            }
+        }
+    }
 }

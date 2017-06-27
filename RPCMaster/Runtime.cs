@@ -18,19 +18,20 @@
 using System.Net;
 using System.Net.Sockets;
 
-namespace RPCMaster {
-	public class Runtime
+namespace RPCMaster
+{
+    public class Runtime
     {
-		protected Socket _socket;
-		protected IPAddress _ipAddress;
-		protected IPEndPoint _endPoint;
-		protected int _port;
+        protected Socket _socket;
+        protected IPAddress _ipAddress;
+        protected IPEndPoint _endPoint;
+        protected int _port;
 
-		public Runtime(IPAddress ipAddress, int port) {
-			this._ipAddress = ipAddress;
-			this._port = port;
-			this._endPoint = new IPEndPoint(this._ipAddress, this._port);
-			this._socket = new Socket(this._ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
-		}
-	}
+        public Runtime(IPAddress ipAddress, int port) {
+            this._ipAddress = ipAddress;
+            this._port = port;
+            this._endPoint = new IPEndPoint(this._ipAddress, this._port);
+            this._socket = new Socket(this._ipAddress.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+        }
+    }
 }

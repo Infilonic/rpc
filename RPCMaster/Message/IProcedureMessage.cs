@@ -15,10 +15,11 @@
  * along with this program.If not, see<http://www.gnu.org/licenses/>
  */
 
-namespace RPCMaster.Message {
-	public interface IProcedureMessage<T>
+namespace RPCMaster.Message
+{
+    public interface IProcedureMessage<T>
     {
         string Serialize();
-		object[] GetVariableArray();
+        object[] GetVariableArray();
     }
 }

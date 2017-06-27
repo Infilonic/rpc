@@ -15,13 +15,13 @@
  * along with this program.If not, see<http://www.gnu.org/licenses/>
  */
 
-using System;
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace RPCMaster.Message {
-	[XmlRoot("Call")]
+namespace RPCMaster.Message
+{
+    [XmlRoot("Call")]
     public class CallMessage : AbstractMessage<CallMessage>
     {
         [XmlElement("Function")]
@@ -32,20 +32,19 @@ namespace RPCMaster.Message {
 
         public CallMessage() { }
 
-        public CallMessage(string fullQualifiedFunctionName, List<Variable> parameters)
-        {
+        public CallMessage(string fullQualifiedFunctionName, List<Variable> parameters) {
             this.FullQualifiedFunctionName = fullQualifiedFunctionName;
             this.Parameters = parameters != null ? parameters : new List<Variable>();
         }
 
-		public override object[] GetVariableArray() {
-			object[] paramArray = new object[this.Parameters.Count];
-			int i = 0;
-			foreach (Variable v in this.Parameters) {
-				paramArray[i] = v.Value;
-				i++;
-			}
-			return paramArray;
-		}
-	}
+        public override object[] GetVariableArray() {
+            object[] paramArray = new object[this.Parameters.Count];
+            int i = 0;
+            foreach (Variable v in this.Parameters) {
+                paramArray[i] = v.Value;
+                i++;
+            }
+            return paramArray;
+        }
+    }
 }
