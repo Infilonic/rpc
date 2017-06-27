@@ -15,8 +15,11 @@
  * along with this program.If not, see<http://www.gnu.org/licenses/>
  */
 
+using System;
 using System.Net;
+using System.Text;
 using System.Net.Sockets;
+using RPCMaster.Message;
 
 namespace RPCMaster {
 	public class Client : Runtime {
@@ -28,8 +31,23 @@ namespace RPCMaster {
 
 		public Client(IPAddress ipAddress, int port) : base(ipAddress, port) { }
 
-		public static void StartSending() {
-			Socket s = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+		public void StartSending(string message) {
+			byte[] buffer = new byte[1024];
+
+			try {
+				base._socket.Connect(base._endPoint);
+				Console.WriteLine("Connected to {0}", base._socket.RemoteEndPoint.ToString());
+				string callMessage = message + "\0";
+				byte[] msg = Encoding.ASCII.GetBytes(callMessage);
+				int bytesSent = base._socket.Send(msg);
+
+				int bytesReceived = base._socket.Receive(buffer);
+				Console.WriteLine("Echoed test = {0}", Encoding.ASCII.GetString(buffer, 0, bytesReceived));
+				base._socket.Shutdown(SocketShutdown.Both);
+				base._socket.Close();
+			} catch (Exception e) {
+				Console.WriteLine("Unexpected exception: {0}", e.ToString());
+			}
 		}
 	}
 }

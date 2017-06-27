@@ -64,12 +64,12 @@ namespace RPCMaster {
 					buffer = new byte[1024];
 					int bytesReceived = handler.Receive(buffer);
 					data += Encoding.ASCII.GetString(buffer, 0, bytesReceived);
-					if (data.IndexOf("<EOF>") > -1) {
+					if (data.IndexOf("\0") > -1) {
 						break;
 					}
 				}
 
-				string responseMessage = ServerStub.GetResponse(CallMessage.Deserialize(data)) + "<EOF>";
+				string responseMessage = ServerStub.GetResponse(CallMessage.Deserialize(data)) + "\0";
 
 				byte[] response = Encoding.ASCII.GetBytes(responseMessage);
 
