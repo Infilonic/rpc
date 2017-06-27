@@ -29,7 +29,7 @@ namespace RPCMaster.Stub {
 			ResponseMessage rM;
 			foreach (MethodInfo mI in _methodList) {
 				if ((mI.DeclaringType.FullName + "." + mI.Name) == message.FullQualifiedFunctionName) {
-					ret = mI.Invoke(null, message.Parameters.ToArray());
+					ret = mI.Invoke(null, message.GetVariableArray());
 					rM = new ResponseMessage(message.FullQualifiedFunctionName, new List<Variable>() { new Variable(ret) });
 				}
 			}
