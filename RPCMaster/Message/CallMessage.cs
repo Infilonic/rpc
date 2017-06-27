@@ -15,6 +15,7 @@
  * along with this program.If not, see<http://www.gnu.org/licenses/>
  */
 
+using System;
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
@@ -36,5 +37,15 @@ namespace RPCMaster.Message {
             this.FullQualifiedFunctionName = fullQualifiedFunctionName;
             this.Parameters = parameters;
         }
+
+		public override object[] GetVariableArray() {
+			object[] paramArray = new object[this.Parameters.Count];
+			int i = 0;
+			foreach (Variable v in this.Parameters) {
+				paramArray[i] = v.Value;
+				i++;
+			}
+			return paramArray;
+		}
 	}
 }

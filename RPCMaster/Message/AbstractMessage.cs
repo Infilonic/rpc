@@ -15,6 +15,7 @@
  * along with this program.If not, see<http://www.gnu.org/licenses/>
  */
 
+using System;
 using System.IO;
 using System.Xml.Serialization;
 
@@ -40,5 +41,7 @@ namespace RPCMaster.Message {
 			}
 			return deserializedObject;
 		}
+
+		public abstract object[] GetVariableArray();
 	}
 }

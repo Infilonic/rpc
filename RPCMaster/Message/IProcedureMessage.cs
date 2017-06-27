@@ -19,5 +19,6 @@ namespace RPCMaster.Message {
 	public interface IProcedureMessage<T>
     {
         string Serialize();
+		object[] GetVariableArray();
     }
 }
