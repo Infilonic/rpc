@@ -6,20 +6,20 @@ using RPCMaster.Attributes;
 
 namespace RPCMaster.Stub {
 	public class ServerStub {
-		private static Assembly _execAssembly = Assembly.GetExecutingAssembly();
-		private static Type[] _typeArray = _execAssembly.GetTypes();
 		private static List<MethodInfo> _methodList = SetMethodList();
 
 		private static List<MethodInfo> SetMethodList() {
 			List<MethodInfo> returnVal = new List<MethodInfo>();
-			foreach (Type t in _typeArray) {
-				foreach (MethodInfo mInfo in t.GetMethods()) {
-					if (mInfo.GetCustomAttributes(typeof(RPCCallAttribute), true).Length > 0) {
-						returnVal.Add(mInfo);
+			foreach (Assembly a in AppDomain.CurrentDomain.GetAssemblies()) {
+				Type[] typeArray = a.GetTypes();
+				foreach (Type t in typeArray) {
+					foreach (MethodInfo mInfo in t.GetMethods()) {
+						if (mInfo.GetCustomAttributes(typeof(RPCCallAttribute), true).Length > 0) {
+							returnVal.Add(mInfo);
+						}
 					}
 				}
 			}
-
 			return returnVal;
 		}
 
