@@ -32,7 +32,7 @@ namespace RPCMaster.Message {
 
         public Variable(Object value)
         {
-            this.Type = value.GetType().ToString();
+            this.Type = value != null ? value.GetType().ToString() : "NULL";
             this.Value = value;
         }
     }
