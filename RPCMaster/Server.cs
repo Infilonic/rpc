@@ -70,10 +70,7 @@ namespace RPCMaster {
 				}
 
 				string responseMessage = ServerStub.GetResponse(CallMessage.Deserialize(data)) + "\0";
-
 				byte[] response = Encoding.ASCII.GetBytes(responseMessage);
-
-				Console.WriteLine("Message received: {0}", data);
 				handler.Send(response);
 				handler.Shutdown(SocketShutdown.Both);
 				handler.Close();

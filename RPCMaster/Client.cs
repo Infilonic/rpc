@@ -31,7 +31,7 @@ namespace RPCMaster {
 
 		public Client(IPAddress ipAddress, int port) : base(ipAddress, port) { }
 
-		public void StartSending(string message) {
+		public void StartSending(string message, out string response) {
 			byte[] buffer = new byte[1024];
 
 			try {
@@ -42,11 +42,12 @@ namespace RPCMaster {
 				int bytesSent = base._socket.Send(msg);
 
 				int bytesReceived = base._socket.Receive(buffer);
-				Console.WriteLine("Echoed test = {0}", Encoding.ASCII.GetString(buffer, 0, bytesReceived));
+				response = Encoding.ASCII.GetString(buffer, 0, bytesReceived);
 				base._socket.Shutdown(SocketShutdown.Both);
 				base._socket.Close();
 			} catch (Exception e) {
 				Console.WriteLine("Unexpected exception: {0}", e.ToString());
+				response = e.ToString();
 			}
 		}
 	}
