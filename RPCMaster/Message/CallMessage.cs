@@ -35,7 +35,7 @@ namespace RPCMaster.Message {
         public CallMessage(string fullQualifiedFunctionName, List<Variable> parameters)
         {
             this.FullQualifiedFunctionName = fullQualifiedFunctionName;
-            this.Parameters = parameters;
+            this.Parameters = parameters != null ? parameters : new List<Variable>();
         }
 
 		public override object[] GetVariableArray() {

@@ -36,7 +36,7 @@ namespace RPCMaster.Message {
         public ResponseMessage(string function, List<Variable> returnValues)
         {
             this.Function = function;
-            this.ReturnValues = returnValues;
+            this.ReturnValues = returnValues != null ? returnValues : new List<Variable>();
         }
 
 		public override object[] GetVariableArray() {
