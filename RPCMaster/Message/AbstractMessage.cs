@@ -21,6 +21,7 @@ using System.Xml.Serialization;
 namespace RPCMaster.Message
 {
     public abstract class AbstractMessage<T> : IProcedureMessage<T>
+        where T : IProcedureMessage<T>
     {
 
         public AbstractMessage() { }
