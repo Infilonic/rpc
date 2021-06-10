@@ -2,7 +2,7 @@ READ FIRST
 ==========
 
 	This Program is used to provide a interface for interprocess communication in C#
-    Copyright (C) 2017  Infilonic
+    Copyright (C) 2017  Sheggies
 
 	This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
